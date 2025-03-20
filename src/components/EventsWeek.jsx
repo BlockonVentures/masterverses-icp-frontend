@@ -1,6 +1,6 @@
 
 import React from "react";
-import SectionHeader from "./Common/SectionHeader";
+import SectionHeader from "./common/SectionHeader";
 import calu from '../assets/images/calu.png';
 
 const EventsWeek = ({ events }) => {

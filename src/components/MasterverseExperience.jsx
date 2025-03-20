@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionHeader from './Common/SectionHeader';
+import SectionHeader from './common/SectionHeader';
 import ex1 from '../assets/images/ex-1.png';
 import ex2 from '../assets/images/ex-2.png';
 import ex3 from '../assets/images/ex-3.png';

@@ -5,7 +5,7 @@ import fe3 from '../assets/images/fe3.png';
 import fe4 from '../assets/images/fe4.png';
 import cal from '../assets/images/cal.png';
 import loc from '../assets/images/loc.png';
-import SectionHeader from "./Common/SectionHeader";
+import SectionHeader from "./common/SectionHeader";
 import ey from '../assets/images/fe-fire.png';
 
 
