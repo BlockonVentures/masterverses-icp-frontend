@@ -19,7 +19,7 @@ const Header = () => {
       <div className="container">
         <nav className="navbar navbar-expand-lg p-0">
           <div className="container-fluid p-0">
-            <a className="navbar-brand" href="https://t.me/masterversess_bot">
+            <a className="navbar-brand" href="https://t.me/masterversess_bot" target='_blank' rel="noreferrer">
               <img src={logo} alt="Logo" />
             </a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,26 +27,6 @@ const Header = () => {
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <ul className="ml-auto right_nav_bitton">
-              {/* <li className='search_bar'>
-                    <input type="text" placeholder='Search destination'/>
-                    <img src={search} alt="search" />
-                </li>
-                <li>
-                  <a href="https://t.me/masterversess_bot" className="d-flex align-items-center gap-3">
-                    <img src={coin} alt="" /> 75,867,008
-                  </a>
-                </li>
-                <li>
-                  <a href="https://t.me/masterversess_bot" className="d-flex align-items-center gap-3">
-                    <img src={fire} alt="" /> 75
-                  </a>
-                </li>
-                <li>
-                  <a href="https://t.me/masterversess_bot" className="d-flex align-items-center gap-3">
-                    <img src={location} alt="" /> India
-                  </a>
-                </li> */}
-
                 <li>
                   <Link>
                     Connect Wallet
@@ -71,23 +51,6 @@ const Header = () => {
                             </div>
                            </div>
                         </button>
-                        {/* <ul className={`dropdown-menu ${isOpen ? "show" : ""}`}>
-                            <li>
-                            <a className="dropdown-item" href="#">
-                                Action
-                            </a>
-                            </li>
-                            <li>
-                            <a className="dropdown-item" href="#">
-                                Another action
-                            </a>
-                            </li>
-                            <li>
-                            <a className="dropdown-item" href="#">
-                                Something else here
-                            </a>
-                            </li>
-                        </ul> */}
                     </div>
                 </li>
               </ul>
