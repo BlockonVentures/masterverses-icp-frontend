@@ -30,3 +30,6 @@ dist-ssr
 
 # Vite config
 vite.config.js
+
+# Internet Computer
+.dfx
