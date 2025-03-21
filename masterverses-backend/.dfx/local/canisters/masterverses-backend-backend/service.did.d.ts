@@ -27,20 +27,6 @@ export interface _SERVICE {
       }
     >
   >,
-  'getFourPicsFullDetails' : ActorMethod<
-    [],
-    Array<
-      {
-        'id' : string,
-        'date' : [] | [string],
-        'description' : [] | [string],
-        'image' : Uint8Array | number[],
-        'price' : [] | [string],
-        'ipfsUrl' : [] | [string],
-        'location' : [] | [string],
-      }
-    >
-  >,
   'getNearbyPlaces' : ActorMethod<
     [],
     Array<
@@ -54,21 +40,6 @@ export interface _SERVICE {
         'location' : [] | [string],
       }
     >
-  >,
-  'getSixPicsWithNames' : ActorMethod<
-    [],
-    Array<
-      {
-        'id' : string,
-        'name' : string,
-        'image' : Uint8Array | number[],
-        'ipfsUrl' : [] | [string],
-      }
-    >
-  >,
-  'getThreePics' : ActorMethod<
-    [],
-    Array<{ 'id' : string, 'image' : Uint8Array | number[] }>
   >,
   'getThreePicsWithDetails' : ActorMethod<
     [],

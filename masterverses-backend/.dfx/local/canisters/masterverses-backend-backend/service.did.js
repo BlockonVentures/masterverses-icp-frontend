@@ -28,23 +28,6 @@ export const idlFactory = ({ IDL }) => {
         ],
         ['query'],
       ),
-    'getFourPicsFullDetails' : IDL.Func(
-        [],
-        [
-          IDL.Vec(
-            IDL.Record({
-              'id' : IDL.Text,
-              'date' : IDL.Opt(IDL.Text),
-              'description' : IDL.Opt(IDL.Text),
-              'image' : IDL.Vec(IDL.Nat8),
-              'price' : IDL.Opt(IDL.Text),
-              'ipfsUrl' : IDL.Opt(IDL.Text),
-              'location' : IDL.Opt(IDL.Text),
-            })
-          ),
-        ],
-        ['query'],
-      ),
     'getNearbyPlaces' : IDL.Func(
         [],
         [
@@ -60,25 +43,6 @@ export const idlFactory = ({ IDL }) => {
             })
           ),
         ],
-        ['query'],
-      ),
-    'getSixPicsWithNames' : IDL.Func(
-        [],
-        [
-          IDL.Vec(
-            IDL.Record({
-              'id' : IDL.Text,
-              'name' : IDL.Text,
-              'image' : IDL.Vec(IDL.Nat8),
-              'ipfsUrl' : IDL.Opt(IDL.Text),
-            })
-          ),
-        ],
-        ['query'],
-      ),
-    'getThreePics' : IDL.Func(
-        [],
-        [IDL.Vec(IDL.Record({ 'id' : IDL.Text, 'image' : IDL.Vec(IDL.Nat8) }))],
         ['query'],
       ),
     'getThreePicsWithDetails' : IDL.Func(
