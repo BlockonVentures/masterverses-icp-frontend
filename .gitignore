@@ -34,3 +34,7 @@ vite.config.js
 # Internet Computer
 .dfx/
 **/.dfx/
+
+# Unignore backend folder
+!masterverses-backend/
+!masterverses-backend/*
