@@ -1,20 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './Pages/Home'
-import UserLayout from './utils/Layout/UserLayout';
+import { Provider } from 'react-redux';
+import AppRoutes from './base/routes/Approutes.jsx';
+import store from './base/store/store.js';
 
 function App() {
 
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<UserLayout />} >
-            <Route index element={<Home />} />
-            <Route path='*' element={<Navigate to={'/'} replace />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   )
 }
 
