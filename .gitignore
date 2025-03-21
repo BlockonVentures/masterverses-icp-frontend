@@ -35,6 +35,6 @@ vite.config.js
 .dfx/
 **/.dfx/
 
-# Unignore backend folder
+# Unignore the backend folder
 !masterverses-backend/
-!masterverses-backend/*
+!masterverses-backend/**  

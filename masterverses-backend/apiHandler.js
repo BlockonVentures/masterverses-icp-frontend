@@ -1,12 +1,14 @@
 const { Actor, HttpAgent } = require("@dfinity/agent");
 const { IDL } = require("@dfinity/candid");
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 
 const { idlFactory } = require('./declarations.js');
 
-const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
-const host = "http://127.0.0.1:4943";
+// const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
+const canisterId = process.env.MAINNET_CANISTER_ID;
+const host = "https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io";
 
 // Helper function to convert Uint8Array to base64 string
 function arrayBufferToBase64(buffer) {

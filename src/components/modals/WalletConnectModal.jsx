@@ -22,9 +22,7 @@ const WalletConnectModal = ({user_info,setUserPrencipal,setIsUserAuth}) => {
       const nanoseconds = days * hours * minutes * seconds * milliseconds * microseconds * BigInt(1000);
       
     const res=  await authClient.login({
-        identityProvider: import.meta.env.VITE_DFX_NETWORK === "ic" 
-          ? "https://identity.ic0.app"
-          : `http://localhost:3000?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai`,
+        identityProvider: "https://identity.ic0.app",
         maxTimeToLive: nanoseconds,
         onSuccess: async () => {
           // Close modal
