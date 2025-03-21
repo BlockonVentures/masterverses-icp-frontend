@@ -4,6 +4,10 @@
       "type": "assets",
       "source": ["dist"],
       "build": ["npm run build"]
+    },
+    "backend":{
+      "main": "./masterverses-backend/src/masterverses-backend-backend/main.mo",
+      "type": "motoko"
     }
   },
   "defaults": {
