@@ -10,17 +10,6 @@ service : {
        location: opt text;
        name: text;
      }) query;
-  getFourPicsFullDetails: () ->
-   (vec
-     record {
-       date: opt text;
-       description: opt text;
-       id: text;
-       image: blob;
-       ipfsUrl: opt text;
-       location: opt text;
-       price: opt text;
-     }) query;
   getNearbyPlaces: () ->
    (vec
      record {
@@ -32,17 +21,6 @@ service : {
        name: text;
        price: opt text;
      }) query;
-  getSixPicsWithNames: () ->
-   (vec record {
-          id: text;
-          image: blob;
-          ipfsUrl: opt text;
-          name: text;
-        }) query;
-  getThreePics: () -> (vec record {
-                             id: text;
-                             image: blob;
-                           }) query;
   getThreePicsWithDetails: () ->
    (vec
      record {

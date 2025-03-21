@@ -306,23 +306,6 @@ actor {
         newId
     };
 
-    // Get three pictures with basic details
-    public query func getThreePics() : async [{
-        id: Text;
-        image: Blob;
-    }] {
-        let subset = Array.subArray<Picture>(pictures, 0, 3);
-        return Array.map<Picture, {
-            id: Text;
-            image: Blob;
-        }>(subset, func(pic: Picture) {
-            {
-                id = pic.id;
-                image = pic.image;
-            }
-        });
-    };
-
     // Get three pictures with full details
     public query func getThreePicsWithDetails() : async [{
         id: Text;
@@ -355,58 +338,4 @@ actor {
         });
     };
 
-    // Get four pictures with full details
-    public query func getFourPicsFullDetails() : async [{
-        id: Text;
-        image: Blob;
-        ipfsUrl: ?Text;
-        description: ?Text;
-        date: ?Text;
-        location: ?Text;
-        price: ?Text;
-    }] {
-        let subset = Array.subArray<Picture>(pictures, 0, 4);
-        return Array.map<Picture, {
-            id: Text;
-            image: Blob;
-            ipfsUrl: ?Text;
-            description: ?Text;
-            date: ?Text;
-            location: ?Text;
-            price: ?Text;
-        }>(subset, func(pic: Picture) {
-            {
-                id = pic.id;
-                image = pic.image;
-                ipfsUrl = pic.ipfsUrl;
-                description = pic.description;
-                date = pic.date;
-                location = pic.location;
-                price = pic.price;
-            }
-        });
-    };
-
-    // Get 6 pictures with names
-    public query func getSixPicsWithNames() : async [{
-        id: Text;
-        image: Blob;
-        ipfsUrl: ?Text;
-        name: Text;
-    }] {
-        let subset = Array.subArray<Picture>(pictures, 0, 6);
-        return Array.map<Picture, {
-            id: Text;
-            image: Blob;
-            ipfsUrl: ?Text;
-            name: Text;
-        }>(subset, func(pic: Picture) {
-            {
-                id = pic.id;
-                image = pic.image;
-                ipfsUrl = pic.ipfsUrl;
-                name = pic.name;
-            }
-        });
-    };
 };
