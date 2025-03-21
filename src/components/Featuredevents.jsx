@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import fe1 from '../assets/images/fe1.png';
 import fe2 from '../assets/images/fe2.png';
 import fe3 from '../assets/images/fe3.png';
@@ -7,6 +7,8 @@ import cal from '../assets/images/cal.png';
 import loc from '../assets/images/loc.png';
 import SectionHeader from "./common/SectionHeader";
 import ey from '../assets/images/fe-fire.png';
+import { useDispatch, useSelector } from "react-redux";
+import { getFeaturedEventsThunk } from "../features/eventSlice";
 
 
 const events = [
@@ -62,30 +64,34 @@ const events = [
 ];
 
 const Featuredevents = () => {
+  const { featuredEvents } = useSelector((state) => state.event);
+  const dispatch=useDispatch()
+  useEffect(() => {
+    dispatch(getFeaturedEventsThunk());
+  }, [dispatch]);
+  console.log('Featured Events',featuredEvents)
   return (
     <div className="container">
-    <SectionHeader title='Featured events' link='View all' url={ey} />
+    <SectionHeader title='Featured events' url={ey} />
       <div className="treanding_event_card_wrapper row pb-0">
-        {events.map((event) => (
-            <div className='col-lg-3' key={event.id}>
-                <div className='treanding_event_card_wrap d-flex flex-column justify-content-between'>
-                    <div>
-                    <span className='badge_custom' style={{ backgroundColor: event.categoryColor }}>{event.category}</span>
-                    <img src={event.image} alt={event.title} style={{minHeight:'358px'}} />
-                    <h5 className="mb-0 feture_title">{event.title}</h5>
-                    </div>
-                    <div className='treanding_event_card_wrap_content justify-content-end' style={{minHeight: '150px'}}>
-                        <p><img src={cal} alt='calendar' /> {event.date} | {event.time}</p>
-                        <p><img src={loc} alt='location' /> {event.venue}</p>
-                        <div className='treanding_event_card_wrap_content_down' style={{ backgroundColor: event.categoryColor_bg }} >
-                            <p>{event.price}</p>
-                            <button>| Buy now</button>
-                        </div>
-                    </div>
-                
+      {featuredEvents?.map((event) => (
+            <div className='col-lg-4' key={event.id}>
+              <div className='treanding_event_card_wrap'>
+                {/* <span className='badge_custom'>{event.category}</span> */}
+                <img src={event.ipfsUrl} alt={event.name} />
+                <div className='treanding_event_card_wrap_content'>
+                  <h5>{event.description.split(' ').slice(0, 8).join(' ')}...</h5>
+                  <div>
+                  <p><img src={cal} alt='calendar' /> {event.date}</p>
+                  <p><img src={loc} alt='location' /> {event.location}</p>
+                  <div className='treanding_event_card_wrap_content_down'>
+                    <p>{'Free'}</p>
+                  </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        ))}
+          ))}
       </div>
     </div>
   );

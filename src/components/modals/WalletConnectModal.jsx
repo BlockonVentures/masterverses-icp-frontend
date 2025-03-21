@@ -1,34 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { AuthClient } from "@dfinity/auth-client";
+import { setItemWithExpiry } from '../../utils/local-storage/localStorage';
 
-const WalletConnectModal = () => {
+const WalletConnectModal = ({user_info,setUserPrencipal,setIsUserAuth}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const callAuth=async()=>{
-    try {
-  const authClient =await  AuthClient.create();
-  
-  console.log('Auth Client',authClient)
-      return authClient
-    } catch (error) {
-  console.log('Auth Client error',error)
-
-      return error
-    }
-  }
-  useEffect(()=>{
-    // console.log('Auth Client',callAuth())
-
-  },[])
+ 
   const handleIILogin = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
       
       const authClient = await AuthClient.create();
-      callAuth()
       // Set login options
-      const days = BigInt(1); // Login expires after 1 day
+      const days = BigInt(1); 
       const hours = BigInt(24);
       const minutes = BigInt(60);
       const seconds = BigInt(60);
@@ -52,8 +37,12 @@ const WalletConnectModal = () => {
 
           const isAuthenticated = await authClient.isAuthenticated();
 
-          console.log("User authenticated:", isAuthenticated);
-          console.log("User principal:", principal.toString());
+          setUserPrencipal(principal.toString())
+          setIsUserAuth(isAuthenticated)
+          setItemWithExpiry("user_masterverses", {
+            authenticated:isAuthenticated,
+            wallet:principal.toString()
+          });
 
           // window.location.href = '/';
         },

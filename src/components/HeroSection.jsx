@@ -24,12 +24,6 @@ const HeroSection = () => {
             <div className="hero_slider_box">
                 <img src={hero} alt="" />
             </div>
-            <div className="hero_slider_box">
-                <img src={hero} alt="" />
-            </div>
-            <div className="hero_slider_box">
-                <img src={hero} alt="" />
-            </div>
             </Slider>
         </div>
         

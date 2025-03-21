@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SectionHeader from './common/SectionHeader';
 import cal from '../assets/images/cal.png';
 import loc from '../assets/images/loc.png';
@@ -7,6 +7,8 @@ import event2 from '../assets/images/event-2.png';
 import event3 from '../assets/images/event-3.png';
 import vasudev from '../assets/images/vasudev.png';
 import ey from '../assets/images/fe-fire.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNearbyPlacesThunk } from '../features/eventSlice';
 
 
 const eventsData = [
@@ -40,27 +42,33 @@ const eventsData = [
 ];
 
 const NearByPlaces = () => {
+  const { nearbyEvents } = useSelector((state) => state.event);
+  const dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(getNearbyPlacesThunk());
+  }, [dispatch]);
+  console.log('Nearby Events',nearbyEvents)
   return (
     <section className='trending_events_section'>
       <div className='container'>
-        <SectionHeader title='NEARBY PLACES' link='View all' url={ey} />
+        <SectionHeader title='NEARBY PLACES'  url={ey} />
         <div className='vasudev_img'>
             <img src={vasudev} alt="" />
         </div>
         <div className='treanding_event_card_wrapper row'>
-          {eventsData.map((event) => (
+          {nearbyEvents?.map((event) => (
             <div className='col-lg-4' key={event.id}>
               <div className='treanding_event_card_wrap'>
-                <span className='badge_custom'>{event.category}</span>
-                <img src={event.image} alt={event.title} />
+                {/* <span className='badge_custom'>{event.category}</span> */}
+                <img src={event.ipfsUrl} alt={event.name} />
                 <div className='treanding_event_card_wrap_content'>
-                  <h5>{event.title}</h5>
+                <h5>{event.description.split(' ').slice(0, 6).join(' ')}...</h5>
+
                   <div>
                   <p><img src={cal} alt='calendar' /> {event.date}</p>
                   <p><img src={loc} alt='location' /> {event.location}</p>
                   <div className='treanding_event_card_wrap_content_down'>
                     <p>{event.price}</p>
-                    <button>| Buy now</button>
                   </div>
                   </div>
                 </div>

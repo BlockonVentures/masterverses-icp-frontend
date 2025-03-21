@@ -1,4 +1,4 @@
-import React,{ useState, useRef }  from 'react';
+import React,{ useState, useRef, useEffect }  from 'react';
 import logo from '../../assets/images/logo.png';
 import coin  from '../../assets/images/coin.png';
 import fire from '../../assets/images/fire.png';
@@ -9,11 +9,28 @@ import '../../assets/css/popup.css'
 
 import { Link } from 'react-router-dom';
 import WalletConnectModal from '../modals/WalletConnectModal';
+import { getItemWithExpiry } from '../../utils/local-storage/localStorage';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [userPrencipal,setUserPrencipal]=useState(null)
+    const [isUserAuth,setIsUserAuth]=useState(false)
     const dropdownRef = useRef(null);
-  
+    const getLocalData=getItemWithExpiry('user_masterverses')
+    console.log('Local Data',getLocalData)
+
+    useEffect(()=>{
+      if(getLocalData?.authenticated&&getLocalData?.wallet)
+      {
+        setIsUserAuth(true)
+        setUserPrencipal(getLocalData?.wallet)
+      }
+      else
+      {
+        setIsUserAuth(false)
+        setUserPrencipal(null)
+      }
+    },[getLocalData])
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
@@ -31,15 +48,24 @@ const Header = () => {
             <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <ul className="ml-auto right_nav_bitton">
                 <li>
-                  <Link data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  {isUserAuth ? <Link data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Connected
+                  </Link> : <Link data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Connect Wallet
-                  </Link>
+                  </Link>}
                 </li>
-               {/* Wallet Connect Modal */}
-                <WalletConnectModal/>
-
-
                 <li>
+                  {isUserAuth?
+                    <a href="https://www.mokx.org/" target="_blank" rel="noopener noreferrer">Your spiritual buddy</a>:''}
+
+                    </li>
+               {/* Wallet Connect Modal */}
+                <WalletConnectModal user_info={{userPrencipal,isUserAuth}} setUserPrencipal={setUserPrencipal} setIsUserAuth={setIsUserAuth} />
+                <li>
+                  {/* <ul className='className="ml-auto right_nav_bitton'> */}
+                   
+                  {/* </ul> */}
+
                     <div className="dropdown" ref={dropdownRef}>
                         <button
                             className="btn btn-secondary p-0 dropdown-toggle bg-transparent border-0"
@@ -49,12 +75,17 @@ const Header = () => {
                         >
                            <div className="user_button">
                             <div className='user_button_left'>
-                                <h5>Lark William</h5>
-                                <p>0xasdef........7fgD</p>
+                          {userPrencipal ? (
+                            <h5>
+                              {userPrencipal.length > 8
+                                ? `${userPrencipal.substring(0, 4)}...${userPrencipal.slice(-6)}`
+                                : userPrencipal}
+                            </h5>
+                          ) : null}
                             </div>
-                            <div className='user_button_right'>
+                            {/* <div className='user_button_right'>
                                 <img src={dropdown} alt="dropdown" />
-                            </div>
+                            </div> */}
                            </div>
                         </button>
                     </div>
