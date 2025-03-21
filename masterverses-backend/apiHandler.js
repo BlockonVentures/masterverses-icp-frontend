@@ -7,7 +7,7 @@ const path = require('path');
 const { idlFactory } = require('./declarations.js');
 
 // const canisterId = "bkyz2-fmaaa-aaaaa-qaaaq-cai";
-const canisterId = process.env.MAINNET_CANISTER_ID;
+const canisterId = process.env.BACKEND_CANISTER_ID || "qegsm-uqaaa-aaaad-qg7ga-cai";
 const host = "https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io";
 
 // Helper function to convert Uint8Array to base64 string
@@ -42,10 +42,10 @@ function formatResponse(data) {
 }
 
 const agent = new HttpAgent({ host });
-agent.fetchRootKey().catch(err => {
-    console.warn("Unable to fetch root key. Check to ensure that your local replica is running");
-    console.error(err);
-});
+// agent.fetchRootKey().catch(err => {
+//     console.warn("Unable to fetch root key. Check to ensure that your local replica is running");
+//     console.error(err);
+// });
 
 const app = express();
 const port = 3001;
